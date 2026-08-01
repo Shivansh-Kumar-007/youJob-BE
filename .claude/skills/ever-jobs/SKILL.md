@@ -1,24 +1,32 @@
-```markdown
+---
+name: ever-jobs
+description: Coding conventions, feature development/testing workflows, and file naming patterns for ever-jobs.
+---
+
 # ever-jobs Development Patterns
 
 > Auto-generated skill from repository analysis
 
 ## Overview
+
 This skill outlines the core development patterns and conventions used in the `ever-jobs` TypeScript repository. It covers file naming, import/export styles, commit message conventions, and testing practices. The guide is intended to help contributors maintain consistency and quality across the codebase.
 
 ## Coding Conventions
 
 ### File Naming
+
 - Use **camelCase** for file names.
   - Example: `jobService.ts`, `userProfile.ts`
 
 ### Import Style
+
 - Use **relative imports** for internal modules.
   ```typescript
-  import { fetchJobs } from './jobService';
+  import { fetchJobs } from "./jobService";
   ```
 
 ### Export Style
+
 - Use **named exports** for functions, classes, and constants.
   ```typescript
   // In jobService.ts
@@ -27,12 +35,14 @@ This skill outlines the core development patterns and conventions used in the `e
   ```
 
 ### Commit Messages
+
 - Use **Conventional Commits** with the `feat` prefix for new features.
   - Example: `feat: add job filtering by location`
 
 ## Workflows
 
 ### Feature Development
+
 **Trigger:** When adding a new feature  
 **Command:** `/feature-development`
 
@@ -44,6 +54,7 @@ This skill outlines the core development patterns and conventions used in the `e
 6. Open a pull request for review.
 
 ### Testing
+
 **Trigger:** Before merging or releasing code  
 **Command:** `/run-tests`
 
@@ -62,10 +73,10 @@ This skill outlines the core development patterns and conventions used in the `e
 - Example test file:
   ```typescript
   // jobService.spec.ts
-  import { fetchJobs } from './jobService';
+  import { fetchJobs } from "./jobService";
 
-  describe('fetchJobs', () => {
-    it('returns a list of jobs', () => {
+  describe("fetchJobs", () => {
+    it("returns a list of jobs", () => {
       const jobs = fetchJobs();
       expect(Array.isArray(jobs)).toBe(true);
     });
@@ -73,8 +84,8 @@ This skill outlines the core development patterns and conventions used in the `e
   ```
 
 ## Commands
-| Command              | Purpose                                 |
-|----------------------|-----------------------------------------|
-| /feature-development | Start the feature development workflow  |
-| /run-tests           | Run all Jest tests                      |
-```
+
+| Command              | Purpose                                |
+| -------------------- | -------------------------------------- |
+| /feature-development | Start the feature development workflow |
+| /run-tests           | Run all Jest tests                     |
