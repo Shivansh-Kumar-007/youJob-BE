@@ -2,6 +2,8 @@
 
 import { Injectable, Logger } from '@nestjs/common';
 import {
+  classifyScrapeError,
+  ScrapeDiagnostics,
   IScraper,
   ScraperInputDto,
   JobResponseDto,
@@ -54,7 +56,10 @@ export class AdpService implements IScraper {
     const cid = input.companySlug;
     if (!cid) {
       this.logger.warn('No companySlug (cid) provided for ADP scraper');
-      return new JobResponseDto([]);
+      return new JobResponseDto([], {
+        reason: 'bad_input',
+        detail: 'no companySlug (cid) provided for ADP scraper',
+      });
     }
 
     const client = createHttpClient({
@@ -69,7 +74,10 @@ export class AdpService implements IScraper {
       this.logger.error(
         `ADP: no host resolved the requisition list for cid ${cid}`,
       );
-      return new JobResponseDto([]);
+      return new JobResponseDto([], {
+        reason: 'fetch_error',
+        detail: `no ADP host resolved the requisition list for cid ${cid}`,
+      });
     }
 
     this.logger.log(
@@ -83,6 +91,7 @@ export class AdpService implements IScraper {
     const details = await this.fetchDetails(client, listing.host, cid, wanted);
 
     const jobPosts: JobPostDto[] = [];
+    let diagnostics: ScrapeDiagnostics | undefined;
     wanted.forEach((job, index) => {
       try {
         const post = this.mapJob(
@@ -97,10 +106,11 @@ export class AdpService implements IScraper {
         }
       } catch (err: any) {
         this.logger.warn(`Error processing ADP job ${job.itemID}: ${err.message}`);
+        diagnostics = classifyScrapeError(err);
       }
     });
 
-    return new JobResponseDto(jobPosts);
+    return new JobResponseDto(jobPosts, diagnostics);
   }
 
   /**

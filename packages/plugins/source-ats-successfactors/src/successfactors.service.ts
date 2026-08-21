@@ -12,6 +12,8 @@ import {
   LocationDto,
   DescriptionFormat,
   Site,
+  classifyScrapeError,
+  ScrapeDiagnostics,
 } from '@ever-jobs/models';
 import {
   createHttpClient,
@@ -68,6 +70,7 @@ export class SuccessFactorsService implements IScraper {
       ? parseSfSlug(companySlug)
       : { instance: '', companyId: '' };
     const resultsWanted = input.resultsWanted ?? 100;
+    const diags: ScrapeDiagnostics[] = [];
 
     // 1. OData API — structured and preferred, but only when an instance is
     //    known. A tenant that does not publish OData yields zero here (the
@@ -78,6 +81,7 @@ export class SuccessFactorsService implements IScraper {
         instance,
         companyId,
         resultsWanted,
+        diags,
       );
       if (odataJobs.length > 0) {
         this.logger.log(
@@ -107,16 +111,25 @@ export class SuccessFactorsService implements IScraper {
       this.logger.log(
         'SuccessFactors: OData/CSB returned zero, falling back to careersection HTML',
       );
+      // The careersection fallback decides the outcome, so it owns the reported
+      // reason. Step 1's OData error is a routing signal — a tenant that does not
+      // publish OData always errors there — and reporting it would name the
+      // surface we deliberately moved on from instead of the one that failed.
+      const htmlDiags: ScrapeDiagnostics[] = [];
       const htmlJobs = await this.scrapeHtml(
         input,
         instance,
         companyId,
         resultsWanted,
+        htmlDiags,
       );
-      return new JobResponseDto(htmlJobs);
+      return new JobResponseDto(
+        htmlJobs,
+        htmlJobs.length ? undefined : htmlDiags[0],
+      );
     }
 
-    return new JobResponseDto([]);
+    return new JobResponseDto([], diags[0]);
   }
 
   protected async scrapeOData(
@@ -124,6 +137,7 @@ export class SuccessFactorsService implements IScraper {
     instance: string,
     companyId: string,
     resultsWanted: number,
+    diags: ScrapeDiagnostics[] = [],
   ): Promise<JobPostDto[]> {
     const client = createHttpClient({
       proxies: input.proxies,
@@ -188,6 +202,7 @@ export class SuccessFactorsService implements IScraper {
       this.logger.log(`SuccessFactors OData total: ${jobPosts.length} jobs for ${instance}`);
     } catch (err: any) {
       this.logger.warn(`SuccessFactors OData request failed for ${instance}: ${err.message}`);
+      diags.push(classifyScrapeError(err));
     }
 
     return jobPosts;
@@ -198,6 +213,7 @@ export class SuccessFactorsService implements IScraper {
     instance: string,
     companyId: string,
     resultsWanted: number,
+    diags: ScrapeDiagnostics[] = [],
   ): Promise<JobPostDto[]> {
     const client = createHttpClient({
       proxies: input.proxies,
@@ -229,6 +245,7 @@ export class SuccessFactorsService implements IScraper {
       return jobs.slice(0, resultsWanted);
     } catch (err: any) {
       this.logger.error(`SuccessFactors HTML scrape failed for ${instance}: ${err.message}`);
+      diags.push(classifyScrapeError(err));
       return [];
     }
   }

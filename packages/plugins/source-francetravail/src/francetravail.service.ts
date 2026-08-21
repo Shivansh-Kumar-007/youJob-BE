@@ -2,6 +2,7 @@
 
 import { Injectable, Logger } from '@nestjs/common';
 import {
+  classifyScrapeError,
   IScraper,
   ScraperInputDto,
   JobResponseDto,
@@ -23,6 +24,7 @@ import {
   FRANCETRAVAIL_HEADERS,
   FRANCETRAVAIL_DEFAULT_RESULTS,
   FRANCETRAVAIL_MAX_RESULTS,
+  FRANCETRAVAIL_TOKEN_TIMEOUT_SECONDS,
 } from './francetravail.constants';
 import { FranceTravailTokenResponse, FranceTravailSearchResponse, FranceTravailOffer } from './francetravail.types';
 
@@ -120,7 +122,7 @@ export class FranceTravailService implements IScraper {
       return new JobResponseDto(jobs);
     } catch (err: any) {
       this.logger.error(`France Travail scrape error: ${err.message}`);
-      return new JobResponseDto([]);
+      return new JobResponseDto([], classifyScrapeError(err));
     }
   }
 
@@ -130,7 +132,7 @@ export class FranceTravailService implements IScraper {
     }
 
     try {
-      const client = createHttpClient({ timeout: 10000 });
+      const client = createHttpClient({ timeout: FRANCETRAVAIL_TOKEN_TIMEOUT_SECONDS });
       client.setHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
       const body = new URLSearchParams({
