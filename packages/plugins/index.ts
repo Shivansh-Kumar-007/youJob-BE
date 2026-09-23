@@ -26,6 +26,8 @@ import { DeelModule } from './source-ats-deel';
 import { FountainModule } from './source-ats-fountain';
 import { FreshteamModule } from './source-ats-freshteam';
 import { GemModule } from './source-ats-gem';
+import { GengalacticModule } from './source-company-gengalactic';
+import { HlaboratoriesModule } from './source-company-hlaboratories';
 import { GreenhouseModule } from './source-ats-greenhouse';
 import { HiringThingModule } from './source-ats-hiringthing';
 import { HomerunModule } from './source-ats-homerun';
@@ -111,6 +113,7 @@ import { BrassRingModule } from './source-ats-brassring';
 import { NamelyModule } from './source-ats-namely';
 import { TempWorksModule } from './source-ats-tempworks';
 import { KekaModule } from './source-ats-keka';
+import { KulaAiModule } from './source-ats-kula_ai';
 import { SnaphuntModule } from './source-ats-snaphunt';
 import { DoverModule } from './source-ats-dover';
 import { PaychexModule } from './source-ats-paychex';
@@ -248,9 +251,11 @@ import { BuildkiteModule } from './source-company-buildkite';
 import { CalendlyModule } from './source-company-calendly';
 import { CameoModule } from './source-company-cameo';
 import { CartaModule } from './source-company-carta';
+import { CascadeSpaceModule } from './source-company-cascade_space';
 import { CelonisModule } from './source-company-celonis';
 import { CerebralModule } from './source-company-cerebral';
 import { ChainguardModule } from './source-company-chainguard';
+import { ChangroboticsAiModule } from './source-company-changrobotics_ai';
 import { CheckrModule } from './source-company-checkr';
 import { ChimeModule } from './source-company-chime';
 import { CircleCIModule } from './source-company-circleci';
@@ -311,6 +316,7 @@ import { IntercomModule } from './source-company-intercom';
 import { IterableModule } from './source-company-iterable';
 import { JustworksModule } from './source-company-justworks';
 import { KlaviyoModule } from './source-company-klaviyo';
+import { KyberlabsAiModule } from './source-company-kyberlabs_ai';
 import { LabelboxModule } from './source-company-labelbox';
 import { LatticeModule } from './source-company-lattice';
 import { LaunchdarklyModule } from './source-company-launchdarkly';
@@ -349,10 +355,12 @@ import { PlaidModule } from './source-company-plaid';
 import { PlanetScaleModule } from './source-company-planetscale';
 import { PostmanModule } from './source-company-postman';
 import { PostscriptModule } from './source-company-postscript';
+import { PulsespaceModule } from './source-company-pulsespace';
 import { QuanataModule } from './source-company-quanata';
 import { RampNetworkModule } from './source-company-rampnetwork';
 import { RechargeModule } from './source-company-recharge';
 import { RedditModule } from './source-company-reddit';
+import { RenewmfgsolModule } from './source-company-renewmfgsol';
 import { RobinhoodModule } from './source-company-robinhood';
 import { RobloxModule } from './source-company-roblox';
 import { SamsaraModule } from './source-company-samsara';
@@ -935,7 +943,7 @@ import { SlingshotAerospaceModule } from './source-company-slingshotaerospace';
 import { SoundAgricultureModule } from './source-company-soundagriculture';
 import { AIRCOMPANYModule } from './source-company-aircompany';
 import { ArborEnergyModule } from './source-company-arborenergy';
-import { AuroraInnovationModule } from './source-company-aurorainnovation';
+import { AuroraTechModule } from './source-company-aurora_tech';
 import { EarnInModule } from './source-company-earnin';
 import { FaradayFutureModule } from './source-company-faradayfuture';
 import { FastSpringModule } from './source-company-fastspring';
@@ -946,6 +954,8 @@ import { SolarisModule } from './source-company-solarisbank';
 import { StackAVModule } from './source-company-stackav';
 import { TastytradeModule } from './source-company-tastytrade';
 import { TorcRoboticsModule } from './source-company-torcrobotics';
+import { SyncereModule } from './source-company-syncere';
+import { TrossenroboticsModule } from './source-company-trossenrobotics';
 import { UrsaMajorModule } from './source-company-ursamajor';
 import { ViaModule } from './source-company-via';
 import { ZuoraModule } from './source-company-zuora';
@@ -955,6 +965,12 @@ import { AkayshaEnergyModule } from './source-company-akayshaenergy';
 import { AndurilIndustriesModule } from './source-company-andurilindustries';
 import { ArmisModule } from './source-company-armissecurity';
 import { AtBayModule } from './source-company-atbayjobs';
+import { ArgospaceModule } from './source-company-argospace';
+import { AtlasspaceModule } from './source-company-atlasspace';
+import { LaunchpadbuildAiModule } from './source-company-launchpadbuild_ai';
+import { TheSpaceportcompanyModule } from './source-company-thespaceportcompany';
+import { ThinkorbitalModule } from './source-company-thinkorbital';
+import { DeftaiCoModule } from './source-company-deftai_co';
 import { AtomicMachinesModule } from './source-company-atomicmachines';
 import { AuguryModule } from './source-company-augury';
 import { AuraModule } from './source-company-aura';
@@ -1691,6 +1707,7 @@ import { QantasGroupModule } from './source-company-qantasgroup';
 import { QuestDiagnosticsModule } from './source-company-questdiagnostics';
 import { RaisingCaneSModule } from './source-company-raisingcanes';
 import { RambollModule } from './source-company-ramboll';
+import { RdwModule } from './source-company-rdw';
 import { RedBullModule } from './source-company-redbull';
 import { RelaisChTeauxModule } from './source-company-relaischteaux';
 import { ReliefInternationalModule } from './source-company-reliefinternational';
@@ -1705,6 +1722,7 @@ import { SecuritasModule } from './source-company-securitas';
 import { SeniorPlcModule } from './source-company-seniorplc';
 import { ServiceNowModule } from './source-company-servicenow';
 import { ShawSModule } from './source-company-shaws';
+import { ShinkeiSystemsModule } from './source-company-shinkei_systems';
 import { SikaModule } from './source-company-sika';
 import { SilfabSolarModule } from './source-company-silfabsolar';
 import { SimplisolarModule } from './source-company-simplisolar';
@@ -1722,6 +1740,7 @@ import { StatkraftModule } from './source-company-statkraft';
 import { StemXpertModule } from './source-company-stemxpert';
 import { StratasFoodsModule } from './source-company-stratasfoods';
 import { StrategicStaffingSolutionsS3Module } from './source-company-strategicstaffingsolutionss3';
+import { StratolaunchModule } from './source-company-stratolaunch';
 import { StructubeModule } from './source-company-structube';
 import { SuntivaModule } from './source-company-suntiva';
 import { SwissHospitalityModule } from './source-company-swisshospitality';
@@ -1860,6 +1879,8 @@ export const ALL_SOURCE_MODULES = [
   FountainModule,
   FreshteamModule,
   GemModule,
+  GengalacticModule,
+  HlaboratoriesModule,
   GreenhouseModule,
   HiringThingModule,
   HomerunModule,
@@ -1945,6 +1966,7 @@ export const ALL_SOURCE_MODULES = [
   NamelyModule,
   TempWorksModule,
   KekaModule,
+  KulaAiModule,
   SnaphuntModule,
   DoverModule,
   PaychexModule,
@@ -2082,9 +2104,11 @@ export const ALL_SOURCE_MODULES = [
   CalendlyModule,
   CameoModule,
   CartaModule,
+  CascadeSpaceModule,
   CelonisModule,
   CerebralModule,
   ChainguardModule,
+  ChangroboticsAiModule,
   CheckrModule,
   ChimeModule,
   CircleCIModule,
@@ -2145,6 +2169,7 @@ export const ALL_SOURCE_MODULES = [
   IterableModule,
   JustworksModule,
   KlaviyoModule,
+  KyberlabsAiModule,
   LabelboxModule,
   LatticeModule,
   LaunchdarklyModule,
@@ -2183,10 +2208,12 @@ export const ALL_SOURCE_MODULES = [
   PlanetScaleModule,
   PostmanModule,
   PostscriptModule,
+  PulsespaceModule,
   QuanataModule,
   RampNetworkModule,
   RechargeModule,
   RedditModule,
+  RenewmfgsolModule,
   RobinhoodModule,
   RobloxModule,
   SamsaraModule,
@@ -2767,7 +2794,7 @@ export const ALL_SOURCE_MODULES = [
   SoundAgricultureModule,
   AIRCOMPANYModule,
   ArborEnergyModule,
-  AuroraInnovationModule,
+  AuroraTechModule,
   EarnInModule,
   FaradayFutureModule,
   FastSpringModule,
@@ -2778,6 +2805,8 @@ export const ALL_SOURCE_MODULES = [
   StackAVModule,
   TastytradeModule,
   TorcRoboticsModule,
+  SyncereModule,
+  TrossenroboticsModule,
   UrsaMajorModule,
   ViaModule,
   ZuoraModule,
@@ -2787,6 +2816,12 @@ export const ALL_SOURCE_MODULES = [
   AndurilIndustriesModule,
   ArmisModule,
   AtBayModule,
+  ArgospaceModule,
+  AtlasspaceModule,
+  LaunchpadbuildAiModule,
+  TheSpaceportcompanyModule,
+  ThinkorbitalModule,
+  DeftaiCoModule,
   AtomicMachinesModule,
   AuguryModule,
   AuraModule,
@@ -3523,6 +3558,7 @@ export const ALL_SOURCE_MODULES = [
   QuestDiagnosticsModule,
   RaisingCaneSModule,
   RambollModule,
+  RdwModule,
   RedBullModule,
   RelaisChTeauxModule,
   ReliefInternationalModule,
@@ -3537,6 +3573,7 @@ export const ALL_SOURCE_MODULES = [
   SeniorPlcModule,
   ServiceNowModule,
   ShawSModule,
+  ShinkeiSystemsModule,
   SikaModule,
   SilfabSolarModule,
   SimplisolarModule,
@@ -3554,6 +3591,7 @@ export const ALL_SOURCE_MODULES = [
   StemXpertModule,
   StratasFoodsModule,
   StrategicStaffingSolutionsS3Module,
+  StratolaunchModule,
   StructubeModule,
   SuntivaModule,
   SwissHospitalityModule,
